@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: 'El Roi Odenigbo Foundation - Compassion in Action',
   description:
     'El Roi Odenigbo Foundation brings compassion and hope to vulnerable communities through education, health support, and skills empowerment in Nigeria.',
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 }
 
 export default function RootLayout({
@@ -15,6 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/images/logo.png" />
+        <link rel="shortcut icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

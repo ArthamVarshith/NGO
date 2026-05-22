@@ -4,7 +4,6 @@ import { HeartHandshake, Quote, UserRound, type LucideIcon } from 'lucide-react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FadeUpObserver from './components/FadeUpObserver'
-import TemporaryDisabledLink from './components/TemporaryDisabledLink'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -32,11 +31,11 @@ const testimonials = [
   },
   {
     quote:
-      'Volunteering with this Foundation changed how I see service. Every child we helped reminded me why giving back matters so deeply.',
+      'Supporting this Foundation changed how I see service. Every child we helped reminded me why giving back matters so deeply.',
     name: 'Emmanuel Oche',
-    role: 'Program Volunteer',
+    role: 'Program Supporter',
     icon: UserRound,
-    label: 'Volunteer Voice',
+    label: 'Supporter Voice',
   },
 ] satisfies Array<{
   quote: string
@@ -54,28 +53,31 @@ const heroPillars = [
 
 const programCards = [
   {
-    img: '/images/mission-education.png',
+    img: '/images/Image_3.jpeg',
     tag: 'Youth & Education',
     title: 'Empowering Youth',
     desc: 'Educational resources, job skills training, and mentorship equip young people from underserved communities with tools to pursue their dreams.',
     note: 'Learning pathways that open futures',
-    imagePosition: 'center 42%',
+    imagePosition: 'center center',
+    alt: 'Children learning together in a classroom supported by education programs',
   },
   {
-    img: '/images/team-foundation.png',
+    img: '/images/Image_2.jpeg',
     tag: 'Widows & Widowers',
     title: 'Empowering the Grieving',
     desc: 'Skill-building initiatives and small business creation provide long-term financial stability for widows and widowers.',
     note: 'Dignity, resilience, and financial independence',
-    imagePosition: 'center 24%',
+    imagePosition: 'center center',
+    alt: 'A smiling woman building self-reliance through livelihood support',
   },
   {
-    img: '/images/outreach-distribution.png',
+    img: '/images/Image_1.jpeg',
     tag: 'Community',
     title: 'Systemic Change',
     desc: 'Collaborating with governments and organizations to advocate for lasting solutions that improve living conditions for the underprivileged.',
     note: 'Partnership-led solutions with lasting reach',
-    imagePosition: '62% center',
+    imagePosition: 'center center',
+    alt: 'Children and families sharing a joyful community moment during outreach',
   },
 ]
 
@@ -113,9 +115,9 @@ export default function HomePage() {
               <Link href="/mission" className="btn btn-primary">
                 Our Mission
               </Link>
-              <TemporaryDisabledLink className="btn btn-secondary">
+              <Link href="/outreach" className="btn btn-secondary">
                 See Our Work
-              </TemporaryDisabledLink>
+              </Link>
             </div>
             <div className="hero-pillars">
               {heroPillars.map((pillar) => (
@@ -132,8 +134,8 @@ export default function HomePage() {
               <span className="hero-img-topnote-sep">December 2023</span>
             </div>
             <Image
-              src="/images/hero-community.png"
-              alt="Volunteers sharing school supplies with families during community outreach in Nigeria"
+              src="/images/Image_1.jpeg"
+              alt="A joyful child surrounded by her community during foundation outreach"
               width={600}
               height={440}
               style={{ width: '100%', height: '440px', objectFit: 'cover' }}
@@ -194,7 +196,7 @@ export default function HomePage() {
                 <div className="program-card-img">
                   <Image
                     src={card.img}
-                    alt={card.title}
+                    alt={card.alt}
                     width={400}
                     height={200}
                     style={{
@@ -221,13 +223,18 @@ export default function HomePage() {
         <div className="container">
           <div className="split fade-up">
             <div className="split-img">
-              <div className="split-img-label">Volunteer Team</div>
+              <div className="split-img-label">Foundation Team</div>
               <Image
-                src="/images/team-foundation.png"
-                alt="El Roi Odenigbo Foundation volunteer team"
+                src="/images/Image_2.jpeg"
+                alt="A woman smiling with dignity and hope in a garden setting"
                 width={560}
                 height={420}
-                style={{ width: '100%', height: '420px', objectFit: 'cover' }}
+                style={{
+                  width: '100%',
+                  height: '420px',
+                  objectFit: 'cover',
+                  objectPosition: 'center center',
+                }}
               />
             </div>
             <div>
@@ -247,7 +254,7 @@ export default function HomePage() {
                   fontSize: '1rem',
                 }}
               >
-                Our staff comprises passionate volunteers and skilled professionals,
+                Our staff comprises passionate team members and skilled professionals,
                 each committed to making a tangible difference. Together, we strive
                 to inspire hope and foster resilience among those we serve.
               </p>
@@ -298,42 +305,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-      <section className="section">
-        <div className="container">
-          <div className="cta-banner fade-up">
-            <div className="cta-banner-copy">
-              <div className="cta-banner-kicker">Take Action</div>
-              <h2>Every Act of Kindness Counts</h2>
-              <p>
-                Your support helps us continue bringing hope and change to those who
-                need it most.
-              </p>
-
-            </div>
-            <div className="cta-banner-side">
-              <div className="cta-banner-actions">
-                <TemporaryDisabledLink className="btn btn-white">
-                  Donate Today
-                </TemporaryDisabledLink>
-                <TemporaryDisabledLink
-                  className="btn"
-                  style={{
-                    background: 'rgba(255,255,255,.15)',
-                    color: 'white',
-                    border: '2px solid rgba(255,255,255,.4)',
-                  }}
-                >
-                  Volunteer
-                </TemporaryDisabledLink>
-              </div>
-              <div className="cta-banner-note">
-                Join a community of supporters creating brighter futures with us.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </>

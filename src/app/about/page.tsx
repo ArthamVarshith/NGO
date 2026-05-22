@@ -10,7 +10,6 @@ import {
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FadeUpObserver from '../components/FadeUpObserver'
-import TemporaryDisabledLink from '../components/TemporaryDisabledLink'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -75,6 +74,25 @@ const services = [
   desc: string
 }>
 
+const storyHighlights = [
+  'Compassion-first service',
+  'Community-led execution',
+  'Community-rooted impact',
+]
+
+const aboutStats = [
+  { num: '3', label: 'Core Commitment Areas' },
+  { num: '4', label: 'Active Programs' },
+  { num: '100%', label: 'Community-Driven' },
+  { num: '100%', label: 'Hope We Share' },
+]
+
+const involvementHighlights = [
+  'Show up on the ground',
+  'Support practical outreach',
+  'Help amplify our mission',
+]
+
 export default function AboutPage() {
   return (
     <>
@@ -102,68 +120,65 @@ export default function AboutPage() {
             left: -60,
           }}
         ></div>
-        <div className="container fade-up">
-          <div className="section-tag">Who We Are</div>
-          <h1>About Us</h1>
-          <p>
-            Years of experience in humanitarian service, focusing on uplifting
-            underprivileged communities with compassion and purpose.
-          </p>
+        <div className="container">
+          <div className="about-hero-shell fade-up">
+            <div className="section-tag">Who We Are</div>
+            <h1>About Us</h1>
+            <p>
+              Years of experience in humanitarian service, focusing on uplifting
+              underprivileged communities with compassion and purpose.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section about-story-section">
         <div className="container">
-          <div className="split fade-up">
-            <div>
+          <div className="split about-story fade-up">
+            <div className="about-story-copy">
               <div className="section-tag">Our Story</div>
               <h2 className="section-title">Our Journey of Compassion</h2>
-              <p className="section-desc">
+              <p className="section-desc about-story-lead">
                 At El Roi Odenigbo Foundation, we bring years of experience in
                 humanitarian service, focusing on uplifting underprivileged
                 communities. Our dedicated team utilizes a compassionate approach,
                 combining resources and expertise to create meaningful change.
               </p>
-              <br />
-              <p
-                style={{
-                  color: 'var(--text-mid)',
-                  lineHeight: 1.8,
-                  fontSize: '.98rem',
-                }}
-              >
-                Our staff comprises passionate volunteers and skilled professionals,
+              <p className="about-story-text">
+                Our staff comprises passionate team members and skilled professionals,
                 each committed to making a tangible difference. Together, we strive
                 to inspire hope and foster resilience among those we serve.
               </p>
-              <br />
-              <br />
+              <div className="about-story-note">
+                We work with care, local understanding, and practical action so
+                support reaches people in ways that truly matter.
+              </div>
               <Link href="/mission" className="btn btn-primary">
                 Explore Our Mission
               </Link>
             </div>
-            <div className="split-img">
+            <div className="split-img about-story-image">
+              <div className="split-img-label">Dedicated Team</div>
               <Image
-                src="/images/team-foundation.png"
-                alt="El Roi Odenigbo Foundation staff and volunteer team"
+                src="/images/Outreach_Lagos/Image_5.jpeg"
+                alt="El Roi Odenigbo Foundation staff and support team"
                 width={560}
                 height={420}
                 style={{ width: '100%', height: '420px', objectFit: 'cover' }}
               />
+              <div className="about-story-card">
+                <strong>Years of lived commitment</strong>
+                <span>Serving communities with empathy, consistency, and hope.</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="stats-strip">
+      <div className="stats-strip about-stats-strip">
         <div className="container">
-          <div className="stats-grid">
-            {[
-              { num: '3', label: 'Core Commitment Areas' },
-              { num: '4', label: 'Active Programs' },
-              { num: '100%', label: 'Volunteer-Powered' },
-              { num: '∞', label: 'Hope We Share' },
-            ].map((s, i) => (
+          <div className="stats-grid about-stats-grid">
+            {aboutStats.map((s, i) => (
               <div
                 className="stat-item fade-up"
                 key={s.label}
@@ -177,101 +192,80 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <section className="section bg-off-white">
+      <section className="section bg-off-white about-commitment-section">
         <div className="container">
-          <div className="section-heading-center fade-up">
+          <div className="section-heading-center fade-up about-commitment-heading">
             <div className="section-tag">Our Commitment</div>
             <h2 className="section-title">Why We Do This</h2>
             <p className="section-desc">
               Three pillars that define our purpose and guide every program we run.
             </p>
           </div>
-          <div className="pillars" style={{ marginTop: 56 }}>
+          <div className="pillars about-commitment-grid">
             {commitments.map((c, i) => (
               <div
-                className="pillar fade-up"
+                className="pillar about-commitment-card fade-up"
                 key={c.num}
-                style={{ background: c.bg, transitionDelay: `${i * 0.12}s` }}
+                style={{
+                  background: c.bg,
+                  borderTop: `4px solid ${c.color}`,
+                  transitionDelay: `${i * 0.12}s`,
+                }}
               >
-                <div className="pillar-num" style={{ color: c.color }}>
+                <div className="about-commitment-num" style={{ color: c.color }}>
                   {c.num}
                 </div>
-                <h3 style={{ color: 'var(--text-dark)', marginBottom: 12 }}>
-                  {c.title}
-                </h3>
-                <p style={{ color: 'var(--text-mid)' }}>{c.desc}</p>
+                <h3 className="about-commitment-title">{c.title}</h3>
+                <p className="about-commitment-text">{c.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section about-involvement-section">
         <div className="container">
-          <div className="split reverse fade-up">
-            <div className="split-img">
+          <div className="split reverse fade-up about-involvement">
+            <div className="split-img about-involvement-image">
+              <div className="split-img-label">Community Outreach</div>
               <Image
-                src="/images/outreach-distribution.png"
+                src="/images/Outreach_Lagos/Image_4.jpeg"
                 alt="Community outreach and support distribution in Nigeria"
                 width={560}
                 height={420}
                 style={{ width: '100%', height: '420px', objectFit: 'cover' }}
               />
+              <div className="about-involvement-card">
+                <strong>Real support, directly delivered</strong>
+                <span>Every act of support helps move hope into action.</span>
+              </div>
             </div>
-            <div>
+            <div className="about-involvement-copy">
               <div className="section-tag">Get Involved Today</div>
               <h2 className="section-title">Be Part of Something Bigger</h2>
-              <p
-                style={{
-                  color: 'var(--text-mid)',
-                  lineHeight: 1.8,
-                  fontSize: '1rem',
-                  marginBottom: 20,
-                }}
-              >
+              <p className="about-involvement-text">
                 Every act of kindness counts, and your support can make a world of
-                difference. Whether you choose to volunteer, donate, or simply spread
-                the word about our mission, your involvement helps us continue
-                bringing hope and change to those who need it most.
+                difference. Whether you choose to partner with us, support our
+                outreach, or simply spread the word about our mission, your
+                involvement helps us continue bringing hope and change to those who
+                need it most.
               </p>
-              <p
-                style={{
-                  color: 'var(--text-mid)',
-                  lineHeight: 1.8,
-                  fontSize: '1rem',
-                  marginBottom: 32,
-                }}
-              >
+              <p className="about-involvement-text about-involvement-text-last">
                 At El Roi Odenigbo Foundation, we&apos;re creating a brighter, more
                 compassionate future, one step at a time.
               </p>
-              <p
-                style={{
-                  color: 'var(--text-dark)',
-                  lineHeight: 1.8,
-                  fontSize: '1rem',
-                  marginBottom: 32,
-                  fontWeight: 700,
-                }}
-              >
+
+              <p className="about-involvement-callout">
                 Join us today and be part of something bigger than yourself.
               </p>
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                <TemporaryDisabledLink className="btn btn-primary">
-                  Donate Now
-                </TemporaryDisabledLink>
-                <TemporaryDisabledLink className="btn btn-secondary">
-                  Volunteer
-                </TemporaryDisabledLink>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section bg-off-white">
+      <section className="section bg-off-white about-services-section">
         <div className="container">
-          <div className="section-heading-center fade-up">
+          <div className="section-heading-center fade-up about-services-heading">
             <div className="section-tag">What We Offer</div>
             <h2 className="section-title">Our Programs & Services</h2>
             <p className="section-desc">
@@ -279,112 +273,43 @@ export default function AboutPage() {
               need it most.
             </p>
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: 28,
-              marginTop: 56,
-            }}
-          >
+          <div className="about-services-grid">
             {services.map((s, i) => {
               const Icon = s.icon
+              const accentColor = i % 2 === 0 ? 'var(--orange)' : 'var(--green)'
+              const accentBg =
+                i % 2 === 0 ? 'var(--orange-soft)' : 'var(--green-soft)'
 
               return (
                 <div
-                  className="card fade-up"
+                  className="card fade-up about-service-card"
                   key={s.num}
                   style={{
-                    padding: '36px 32px',
-                    borderLeft:
-                      '4px solid ' +
-                      (i % 2 === 0 ? 'var(--orange)' : 'var(--green)'),
+                    borderLeft: `4px solid ${accentColor}`,
                     transitionDelay: `${i * 0.1}s`,
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 14,
-                      marginBottom: 16,
-                    }}
-                  >
+                  <div className="about-service-head">
                     <div
-                      style={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: 12,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background:
-                          i % 2 === 0
-                            ? 'var(--orange-soft)'
-                            : 'var(--green-soft)',
-                        color: i % 2 === 0 ? 'var(--orange)' : 'var(--green)',
-                      }}
+                      className="about-service-icon"
+                      style={{ background: accentBg, color: accentColor }}
                     >
                       <Icon size={24} aria-hidden="true" />
                     </div>
-                    <div>
+                    <div className="about-service-meta">
                       <div
-                        style={{
-                          fontSize: '.75rem',
-                          fontWeight: 700,
-                          letterSpacing: '.08em',
-                          color: i % 2 === 0 ? 'var(--orange)' : 'var(--green)',
-                          textTransform: 'uppercase',
-                        }}
+                        className="about-service-num"
+                        style={{ color: accentColor }}
                       >
                         {s.num}
                       </div>
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>
-                        {s.title}
-                      </h3>
+                      <h3>{s.title}</h3>
                     </div>
                   </div>
-                  <p
-                    style={{
-                      fontSize: '.93rem',
-                      color: 'var(--text-mid)',
-                      lineHeight: 1.75,
-                    }}
-                  >
-                    {s.desc}
-                  </p>
+                  <p className="about-service-text">{s.desc}</p>
                 </div>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-sm">
-        <div className="container">
-          <div className="cta-banner fade-up">
-            <div>
-              <h2>Get Involved Today</h2>
-              <p>
-                Every act of kindness counts. Join us and be part of something
-                bigger than yourself.
-              </p>
-            </div>
-            <div className="cta-banner-actions">
-              <TemporaryDisabledLink className="btn btn-white">
-                Donate Now
-              </TemporaryDisabledLink>
-              <TemporaryDisabledLink
-                className="btn"
-                style={{
-                  background: 'rgba(255,255,255,.15)',
-                  color: 'white',
-                  border: '2px solid rgba(255,255,255,.4)',
-                }}
-              >
-                Our Outreach
-              </TemporaryDisabledLink>
-            </div>
           </div>
         </div>
       </section>

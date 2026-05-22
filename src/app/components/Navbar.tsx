@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import TemporaryDisabledLink from './TemporaryDisabledLink'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -90,16 +89,13 @@ export default function Navbar() {
             <Link href="/mission" className={isActive('/mission')}>
               Mission
             </Link>
-            <TemporaryDisabledLink className={isActive('/outreach')}>
+            <Link href="/outreach" className={isActive('/outreach')}>
               Outreach
-            </TemporaryDisabledLink>
-            <TemporaryDisabledLink className={isActive('/contact')}>
+            </Link>
+            <Link href="/contact" className={isActive('/contact')}>
               Contact
-            </TemporaryDisabledLink>
+            </Link>
           </div>
-          <TemporaryDisabledLink className="btn btn-primary nav-cta">
-            Donate Now
-          </TemporaryDisabledLink>
           <button
             type="button"
             className="nav-hamburger"
@@ -145,15 +141,12 @@ export default function Navbar() {
         <Link href="/mission" onClick={closeMenu}>
           Mission
         </Link>
-        <TemporaryDisabledLink className="mobile-menu-link">
+        <Link href="/outreach" onClick={closeMenu}>
           Outreach
-        </TemporaryDisabledLink>
-        <TemporaryDisabledLink className="mobile-menu-link">
+        </Link>
+        <Link href="/contact" onClick={closeMenu}>
           Contact
-        </TemporaryDisabledLink>
-        <TemporaryDisabledLink className="btn btn-primary">
-          Donate Now
-        </TemporaryDisabledLink>
+        </Link>
       </div>
     </>
   )
