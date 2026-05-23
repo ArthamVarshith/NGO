@@ -26,7 +26,7 @@ const outreachEvents = [
       'Through initiatives like this, the El-roi Odenigbo Foundation continues to demonstrate its mission to serve and uplift communities in need. We appreciate the opportunity to make a positive impact and look forward to future collaborations.',
     ],
     closing: 'Thank you.',
-    video: '/videos/Yelwa_video.mp4',
+    video: '/Videos/Yelwa_video.mp4',
     images: [
       '/images/Outreach_Yelwa/Image_1.jpeg',
       '/images/Outreach_Yelwa/Image_2.jpeg',
@@ -160,8 +160,8 @@ export default function OutreachPage() {
           </div>
 
           {outreachEvents.map((event) => (
-            <article key={event.title} className="outreach-event-card fade-up">
-              <div className="outreach-event-copy">
+            <article key={event.title} className="outreach-event-card">
+              <div className="outreach-event-copy fade-up">
                 <div className="outreach-event-meta">
                   <span className="outreach-event-tag">{event.tag}</span>
                   <span className="outreach-event-count">
@@ -191,7 +191,7 @@ export default function OutreachPage() {
               </div>
 
               {'video' in event && event.video ? (
-                <div className="outreach-event-video-block">
+                <div className="outreach-event-video-block fade-up">
                   <div className="outreach-event-video">
                     <video
                       controls
@@ -206,7 +206,7 @@ export default function OutreachPage() {
                 </div>
               ) : null}
 
-              <div className="outreach-event-grid">
+              <div className="outreach-event-grid fade-up">
                 {event.images.map((src, index) => (
                   <div
                     key={src}
