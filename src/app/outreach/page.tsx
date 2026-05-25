@@ -7,10 +7,52 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Outreach - El Roi Odenigbo Foundation',
   description:
-    'See our on-the-ground outreach work across Lagos, Suleja, and Yelwa with photos and video from El Roi Odenigbo Foundation.',
+    'See our on-the-ground outreach work across Awka, Lagos, Suleja, and Yelwa with photos and video from El Roi Odenigbo Foundation.',
 }
 
 const outreachEvents = [
+  {
+    tag: 'Community Outreach',
+    title: 'Our Outreach Campaign in Awka, Anambra State',
+    location: 'Awka, Anambra State, Nigeria',
+    mediaLabel: '3 Photos + 1 Video',
+    description:
+      'A compassionate visitation to an orphanage home focused on care, support, meaningful time with the children, and practical help for their wellbeing.',
+    body: [
+      'As part of our commitment to community service, compassion, and social responsibility, our team organized an outreach visitation to an orphanage home in Awka. The purpose of the visit was to spend quality time with the children, provide support through donations, encourage them emotionally, and contribute positively to their wellbeing.',
+      'The outreach was carried out successfully with the participation of members of our organization, who came together to show love, care, and support to the children and the management of the orphanage home.',
+    ],
+    sections: [
+      {
+        title: 'Objectives of the Outreach',
+        items: [
+          'To show love and support to the children at the orphanage home.',
+          'To donate essential items and supplies to assist the home.',
+          'To encourage and motivate the children through interaction and activities.',
+          'To strengthen community relationships and promote humanitarian service.',
+          'To create awareness about the importance of caring for vulnerable children.',
+        ],
+      },
+      {
+        title: 'Activities Carried Out',
+        items: [
+          'Introduction and welcome session with the management and staff of the orphanage home.',
+          'Donation presentation of essential items including food items, toiletries, clothing materials, educational materials, snacks and beverages, and other welfare supplies.',
+          'Interactive session with the children through conversations, games, storytelling, music, and motivational talks.',
+          'Entertainment and fun activities to create a joyful atmosphere and make the children feel loved and appreciated.',
+          'Words of encouragement, appreciation from the orphanage management, and prayers for the children and the visiting team.',
+        ],
+      },
+    ],
+    closing:
+      'The outreach concluded successfully and reflected our ongoing commitment to humanitarian service, compassion, and support for vulnerable children.',
+    video: '/Videos/Awka_video.mp4',
+    images: [
+      '/images/Outreach_Awka/WhatsApp Image 2026-05-24 at 18.15.56.jpeg',
+      '/images/Outreach_Awka/WhatsApp Image 2026-05-24 at 18.15.57.jpeg',
+      '/images/Outreach_Awka/WhatsApp Image 2026-05-24 at 18.15.57 (1).jpeg',
+    ],
+  },
   {
     tag: 'Humanitarian Relief',
     title: "El-roi Odenigbo Foundation's Outreach to Yelwa Community",
@@ -88,6 +130,15 @@ const outreachEvents = [
   },
 ]
 
+const totalPhotos = outreachEvents.reduce((sum, event) => sum + event.images.length, 0)
+const totalVideos = outreachEvents.reduce(
+  (sum, event) => sum + ('video' in event && event.video ? 1 : 0),
+  0
+)
+const coveredLocations = outreachEvents
+  .map((event) => event.location.split(',')[0].replace(/ Community$/i, ''))
+  .join(', ')
+
 export default function OutreachPage() {
   return (
     <>
@@ -131,10 +182,13 @@ export default function OutreachPage() {
         <div className="container">
           <div className="stats-grid outreach-stats-grid">
             {[
-              { num: '3', label: 'Outreach features' },
-              { num: '31', label: 'Total photos on this page' },
-              { num: '1', label: 'Video on this page' },
-              { num: 'Lagos, Suleja, Yelwa', label: 'Locations covered' },
+              { num: `${outreachEvents.length}`, label: 'Outreach features' },
+              { num: `${totalPhotos}`, label: 'Total photos on this page' },
+              {
+                num: `${totalVideos}`,
+                label: totalVideos === 1 ? 'Video on this page' : 'Videos on this page',
+              },
+              { num: coveredLocations, label: 'Locations covered' },
             ].map((s, i) => (
               <div
                 className="stat-item fade-up"
@@ -178,6 +232,18 @@ export default function OutreachPage() {
                       <p key={paragraph} className="outreach-event-body">
                         {paragraph}
                       </p>
+                    ))
+                  : null}
+                {'sections' in event && event.sections
+                  ? event.sections.map((section) => (
+                      <div key={section.title} className="outreach-event-section">
+                        <h4 className="outreach-event-subtitle">{section.title}</h4>
+                        <ul className="outreach-event-list">
+                          {section.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
                     ))
                   : null}
                 {'quote' in event && event.quote ? (

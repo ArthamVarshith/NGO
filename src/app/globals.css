@@ -2246,6 +2246,33 @@ a.footer-contact-item:focus-visible {
   line-height: 1.82;
 }
 
+.outreach-event-section {
+  width: 100%;
+  max-width: none;
+  margin-top: 20px;
+}
+
+.outreach-event-subtitle {
+  margin-bottom: 10px;
+  color: var(--text-dark);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.outreach-event-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--text-mid);
+  list-style: disc;
+}
+
+.outreach-event-list li {
+  font-size: 0.97rem;
+  line-height: 1.8;
+}
+
 .outreach-event-quote {
   width: 100%;
   max-width: none;
@@ -3823,6 +3850,15 @@ a.footer-contact-item:focus-visible {
   .outreach-event-body {
     font-size: 0.93rem;
     line-height: 1.76;
+  }
+
+  .outreach-event-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .outreach-event-list li {
+    font-size: 0.93rem;
+    line-height: 1.74;
   }
 
   .outreach-event-quote {
