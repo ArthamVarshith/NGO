@@ -4,13 +4,33 @@ import Footer from '../components/Footer'
 import FadeUpObserver from '../components/FadeUpObserver'
 import type { Metadata } from 'next'
 
+type OutreachSection = {
+  title: string
+  items: string[]
+}
+
+type OutreachEvent = {
+  tag: string
+  title: string
+  location: string
+  description: string
+  images: string[]
+  mediaLabel?: string
+  body?: string[]
+  sections?: OutreachSection[]
+  closing?: string
+  quote?: string
+  video?: string
+  videos?: string[]
+}
+
 export const metadata: Metadata = {
   title: 'Outreach - El Roi Odenigbo Foundation',
   description:
     'See our on-the-ground outreach work across Awka, Lagos, Suleja, and Yelwa with photos and video from El Roi Odenigbo Foundation.',
 }
 
-const outreachEvents = [
+const outreachEvents: OutreachEvent[] = [
   {
     tag: 'Community Outreach',
     title: 'Our Outreach Campaign in Awka, Anambra State',
@@ -57,7 +77,7 @@ const outreachEvents = [
     tag: 'Humanitarian Relief',
     title: "El-roi Odenigbo Foundation's Outreach to Yelwa Community",
     location: 'Yelwa Community, Nigeria',
-    mediaLabel: '13 Photos + 1 Video',
+    mediaLabel: '13 Photos + 3 Videos',
     description:
       'Support and relief outreach for displaced persons and vulnerable families affected by tragedy.',
     body: [
@@ -68,7 +88,11 @@ const outreachEvents = [
       'Through initiatives like this, the El-roi Odenigbo Foundation continues to demonstrate its mission to serve and uplift communities in need. We appreciate the opportunity to make a positive impact and look forward to future collaborations.',
     ],
     closing: 'Thank you.',
-    video: '/Videos/Yelwa_video.mp4',
+    videos: [
+      '/Videos/Yelwa_video.mp4',
+      '/Videos/Yelwa_video_2.mp4',
+      '/Videos/Yelwa_video_3.mp4',
+    ],
     images: [
       '/images/Outreach_Yelwa/Image_1.jpeg',
       '/images/Outreach_Yelwa/Image_2.jpeg',
@@ -132,7 +156,13 @@ const outreachEvents = [
 
 const totalPhotos = outreachEvents.reduce((sum, event) => sum + event.images.length, 0)
 const totalVideos = outreachEvents.reduce(
-  (sum, event) => sum + ('video' in event && event.video ? 1 : 0),
+  (sum, event) =>
+    sum +
+    (event.videos?.length
+      ? event.videos.length
+      : event.video
+        ? 1
+        : 0),
   0
 )
 const coveredLocations = outreachEvents
@@ -214,85 +244,95 @@ export default function OutreachPage() {
           </div>
 
           {outreachEvents.map((event) => (
-            <article key={event.title} className="outreach-event-card">
-              <div className="outreach-event-copy fade-up">
-                <div className="outreach-event-meta">
-                  <span className="outreach-event-tag">{event.tag}</span>
-                  <span className="outreach-event-count">
-                    {'mediaLabel' in event && event.mediaLabel
-                      ? event.mediaLabel
-                      : `${event.images.length} Photos`}
-                  </span>
-                </div>
-                <h3>{event.title}</h3>
-                <p className="outreach-event-location">{event.location}</p>
-                <p className="outreach-event-description">{event.description}</p>
-                {'body' in event && event.body
-                  ? event.body.map((paragraph) => (
-                      <p key={paragraph} className="outreach-event-body">
-                        {paragraph}
-                      </p>
-                    ))
-                  : null}
-                {'sections' in event && event.sections
-                  ? event.sections.map((section) => (
-                      <div key={section.title} className="outreach-event-section">
-                        <h4 className="outreach-event-subtitle">{section.title}</h4>
-                        <ul className="outreach-event-list">
-                          {section.items.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
+            (() => {
+              const eventVideos = event.videos?.length
+                ? event.videos
+                : event.video
+                  ? [event.video]
+                  : []
+
+              return (
+                <article key={event.title} className="outreach-event-card">
+                  <div className="outreach-event-copy fade-up">
+                    <div className="outreach-event-meta">
+                      <span className="outreach-event-tag">{event.tag}</span>
+                      <span className="outreach-event-count">
+                        {event.mediaLabel ? event.mediaLabel : `${event.images.length} Photos`}
+                      </span>
+                    </div>
+                    <h3>{event.title}</h3>
+                    <p className="outreach-event-location">{event.location}</p>
+                    <p className="outreach-event-description">{event.description}</p>
+                    {event.body
+                      ? event.body.map((paragraph) => (
+                          <p key={paragraph} className="outreach-event-body">
+                            {paragraph}
+                          </p>
+                        ))
+                      : null}
+                    {event.sections
+                      ? event.sections.map((section) => (
+                          <div key={section.title} className="outreach-event-section">
+                            <h4 className="outreach-event-subtitle">{section.title}</h4>
+                            <ul className="outreach-event-list">
+                              {section.items.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))
+                      : null}
+                    {event.quote ? (
+                      <blockquote className="outreach-event-quote">
+                        {event.quote}
+                      </blockquote>
+                    ) : null}
+                    {event.closing ? (
+                      <p className="outreach-event-closing">{event.closing}</p>
+                    ) : null}
+                  </div>
+
+                  {eventVideos.length
+                    ? eventVideos.map((videoSrc) => (
+                        <div key={videoSrc} className="outreach-event-video-block fade-up">
+                          <div className="outreach-event-video">
+                            <video
+                              controls
+                              preload="metadata"
+                              playsInline
+                              className="outreach-event-video-player"
+                            >
+                              <source src={videoSrc} type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
+                        </div>
+                      ))
+                    : null}
+
+                  <div className="outreach-event-grid fade-up">
+                    {event.images.map((src, index) => (
+                      <div
+                        key={src}
+                        className={`outreach-event-photo${
+                          !eventVideos.length && index === 0
+                            ? ' outreach-event-photo-featured'
+                            : ''
+                        }`}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${event.title} in ${event.location} - photo ${index + 1}`}
+                          width={1200}
+                          height={900}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
                       </div>
-                    ))
-                  : null}
-                {'quote' in event && event.quote ? (
-                  <blockquote className="outreach-event-quote">
-                    {event.quote}
-                  </blockquote>
-                ) : null}
-                {'closing' in event && event.closing ? (
-                  <p className="outreach-event-closing">{event.closing}</p>
-                ) : null}
-              </div>
-
-              {'video' in event && event.video ? (
-                <div className="outreach-event-video-block fade-up">
-                  <div className="outreach-event-video">
-                    <video
-                      controls
-                      preload="metadata"
-                      playsInline
-                      className="outreach-event-video-player"
-                    >
-                      <source src={event.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    ))}
                   </div>
-                </div>
-              ) : null}
-
-              <div className="outreach-event-grid fade-up">
-                {event.images.map((src, index) => (
-                  <div
-                    key={src}
-                    className={`outreach-event-photo${
-                      !('video' in event && event.video) && index === 0
-                        ? ' outreach-event-photo-featured'
-                        : ''
-                    }`}
-                  >
-                    <Image
-                      src={src}
-                      alt={`${event.title} in ${event.location} - photo ${index + 1}`}
-                      width={1200}
-                      height={900}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </article>
+                </article>
+              )
+            })()
           ))}
         </div>
       </section>
