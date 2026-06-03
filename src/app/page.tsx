@@ -71,13 +71,13 @@ const programCards = [
     alt: 'A smiling woman building self-reliance through livelihood support',
   },
   {
-    img: '/images/Image_1.jpeg',
+    img: '/images/Outreach_Lagos/Image_4.jpeg',
     tag: 'Community',
     title: 'Systemic Change',
     desc: 'Collaborating with governments and organizations to advocate for lasting solutions that improve living conditions for the underprivileged.',
     note: 'Partnership-led solutions with lasting reach',
     imagePosition: 'center center',
-    alt: 'Children and families sharing a joyful community moment during outreach',
+    alt: 'Children, families, and volunteers gathered around outreach support supplies',
   },
 ]
 
@@ -225,8 +225,8 @@ export default function HomePage() {
             <div className="split-img">
               <div className="split-img-label">Foundation Team</div>
               <Image
-                src="/images/Image_2.jpeg"
-                alt="A woman smiling with dignity and hope in a garden setting"
+                src="/images/Outreach_Lagos/Image_3.jpeg"
+                alt="Foundation team members standing together beside donated supplies"
                 width={560}
                 height={420}
                 style={{
