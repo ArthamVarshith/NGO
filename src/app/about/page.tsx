@@ -229,8 +229,8 @@ export default function AboutPage() {
             <div className="split-img about-involvement-image">
               <div className="split-img-label">Community Outreach</div>
               <Image
-                src="/images/Outreach_Lagos/Image_4.jpeg"
-                alt="Community outreach and support distribution in Nigeria"
+                src="/images/Outreach_Lagos/Image_7.jpeg"
+                alt="Foundation volunteers handing support items to children and families during community outreach"
                 width={560}
                 height={420}
                 style={{ width: '100%', height: '420px', objectFit: 'cover' }}
