@@ -136,8 +136,10 @@ const outreachEvents: OutreachEvent[] = [
     tag: 'Photo Gallery',
     title: 'Outreach Events at Suleja',
     location: 'Suleja, Niger State, Nigeria',
+    mediaLabel: '11 Photos + 1 Video',
     description:
       'A visual gallery from our outreach events in Suleja, capturing community moments and our team on the ground.',
+    video: '/Videos/Suleja_outreach_video.mp4',
     images: [
       '/images/Outreach_Suleja/Image_1.jpeg',
       '/images/Outreach_Suleja/Image_2.jpeg',
